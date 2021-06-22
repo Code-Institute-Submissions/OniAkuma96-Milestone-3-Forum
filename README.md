@@ -22,6 +22,12 @@ The site will display posts and replies in order of date submitted and will uses
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
     - Micro web framework written in Python to build application
 
+- [Heroku](https://dashboard.heroku.com/login)
+    - For deployment of Python application
+
+- [MongoDB]()
+    - As a database for storing infomation
+
 ## Testing
 
 ### Validator Testing
@@ -29,6 +35,20 @@ The site will display posts and replies in order of date submitted and will uses
 ### Unfixed Bugs
 
 ## Deployment
+
+- I deployed my app to Heroku after getting Flask running by doing the following:
+
+1 Created requirements.txt file so Heroku knows what it needs to run app using pip3 freeze --local > requirements.txt command in terminal.
+
+2 Created Procfile needed for Heroku to run app using echo web: python app.py > Procfile command in terminal.
+
+3 Logged in to Heroku and clicked on 'create new app', set app name to r3view, and region to Europe.
+
+4 On deploy tab clicked on Connect to GitHub button to setup automatic deployment. Searched for repo name and clicked connect.
+
+5 Navigate to settings tab and reveal Config Vars and added keys and values.
+
+6 Back in GitPod pushed requirements.txt and Procfile, enabled automatic deployment on Heroku, and clicked deploy branch. Heroku confirmed app was successfully deployed.
 
 ## Credits
 

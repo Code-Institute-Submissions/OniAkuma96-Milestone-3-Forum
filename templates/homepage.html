@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R3view</title>
+</head>
+<body>
+
+    {% for post in posts %}
+        {{ post.post_title }}
+        {{ post.post_description }}
+    {% endfor %}
+
+</body>
+</html>
