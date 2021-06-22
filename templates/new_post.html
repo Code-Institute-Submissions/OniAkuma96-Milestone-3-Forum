@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align teal-text text-darken-2 page-header">New Post</h3>
+
+    <div class="row card-panel grey lighten-3">
+        <form method="POST" action="{{ url_for('new_post') }}" class="col s12">
+            <!-- post title -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="post_title" name="post_title" class="validate" minlength="1" maxlength="25" required>
+                    <label for="post_title">Title</label>
+                </div>
+            </div>
+            <!-- post body -->
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea name="task_description" id="task_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="250" required></textarea>
+                            <label for="task_description">Write post here</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large teal darken-2">Submit Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
