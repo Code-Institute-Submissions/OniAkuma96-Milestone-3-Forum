@@ -28,6 +28,12 @@ The site will display posts and replies in order of date submitted and will uses
 - [MongoDB]()
     - As a database for storing infomation
 
+- [jQuery]()
+
+- [Materialize]()
+
+- [Font Awsome]()
+
 ## Testing
 
 ### Validator Testing
