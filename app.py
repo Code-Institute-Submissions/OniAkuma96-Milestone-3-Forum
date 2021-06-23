@@ -69,7 +69,7 @@ def login():
                     "profile", username=session["user"]))
 
             else:
-                flash("Incorrect username and/or password")
+                flash("Incorrect password")
                 return redirect(url_for("login"))
 
     return render_template("login.html")
@@ -103,6 +103,14 @@ def profile(username):
     if session["user"]:
         return render_template("profile.html", username=username)
 
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookies
+    flash("You have been logged out")
+    session.pop("user")
     return redirect(url_for("login"))
 
 
