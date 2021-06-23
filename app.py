@@ -21,6 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/homepage")
 def homepage():
+    # get all forum posts
     posts = mongo.db.forum_posts.find()
     return render_template("homepage.html", posts=posts)
 
@@ -28,6 +29,7 @@ def homepage():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        # checks if username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -39,6 +41,7 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
+        # if username doesn't exist adds new username to db
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
@@ -48,9 +51,34 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # checks if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # if username exists check if password matches
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.gorm.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+
+            else:
+                flash("Incorrect username and/or password")
+                return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
 @app.route("/new_post", methods=["GET", "POST"])
 def new_post():
     if request.method == "POST":
+        # grabs the date and time of submission for display
         date_time = datetime.datetime.now()
         post = {
             "post_title": request.form.get("post_title"),
@@ -64,6 +92,18 @@ def new_post():
         return redirect(url_for("homepage"))
 
     return render_template("new_post.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grabs username of current session
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

@@ -3,9 +3,11 @@
 
     <h3 class="center-align teal-text text-darken-2 page-header">All Posts</h3>
 
-    <div class="row center-align">
-        <a href="{{ url_for('new_post') }}" class="btn-large teal darken-2">New Post</a>
-    </div>
+    {% if session.user %}
+        <div class="row center-align">
+            <a href="{{ url_for('new_post') }}" class="btn-large teal darken-2">New Post</a>
+        </div>
+    {% endif %}
 
     {% for post in posts %}
 
