@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="page-header teal-text text-darken-2">View Replies</h3>
+<h3 class="page-header teal-text text-darken-2 center-align">View Replies</h3>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card teal darken-2">
+            <div class="card-content white-text">
+                <span class="card-title">{{ post.post_title }}</span>
+                <p>{{ post.post_description }}</p>
+            </div>
+            <div class="card-action">
+                <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on
+                    {{ post.creation_date }}</p>
+                {% if session.user %}
+                    <a href="#">Reply</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
