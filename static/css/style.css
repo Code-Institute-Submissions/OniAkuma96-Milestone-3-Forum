@@ -6,3 +6,7 @@
     font-family: 'Bebas Neue', cursive;
     font-size: 44px;
 }
+
+.container {
+    width: 90%;
+}

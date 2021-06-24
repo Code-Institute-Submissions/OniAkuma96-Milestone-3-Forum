@@ -21,7 +21,9 @@
                     <div class="card-action">
                         <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }}</p>
                         <a href="#">View Replies</a>
-                        <a href="#">Reply</a>
+                        {% if session.user %}
+                            <a href="#">Reply</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
