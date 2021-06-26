@@ -14,7 +14,7 @@
                 <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on
                     {{ post.creation_date }}</p>
                 {% if session.user %}
-                    <a href="#">Reply</a>
+                    <a href="{{ url_for('reply', post_id=post._id) }}">Reply</a>
                 {% endif %}
             </div>
         </div>

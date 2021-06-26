@@ -106,7 +106,8 @@ def profile(username):
     )
 
     if session["user"]:
-        return render_template("profile.html", username=username, users_posts=users_posts)
+        return render_template(
+            "profile.html", username=username, users_posts=users_posts)
 
     return redirect(url_for("login"))
 
@@ -123,6 +124,12 @@ def logout():
 def view_replies(post_id):
     post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
     return render_template("view_replies.html", post=post)
+
+
+@app.route("/reply/<post_id>")
+def reply(post_id):
+    post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+    return render_template("reply.html", post=post)
 
 
 if __name__ == "__main__":
