@@ -1,10 +1,9 @@
 # R3view
 
-R3view, pronounced review, is a forum for discussion of a wide range of topics.
-Here registered users are free to post and reply to posts made by other users on anything their heart desires.
-Posts will have a title, image and description, all compulsory to make a post, and users are free to read and post replies to posts or other replies inside a post, no title and optional image.
+R3view is a forum for discussion on anything, the emphasis is on free discussion by its users.
+Here registered users are free to make posts, view, and reply to posts, and reply to replies within posts.
+Posts will have a title and body and replies will just have a body. Ideally I would like to include the ability to post images too.
 This site is for registered users who want free and open discussion and also for non-registered users who wish to read the posts.
-The site will display posts and replies in order of date submitted and will uses a like system visible on a user's profile.
 
 ## Features
 
@@ -12,12 +11,38 @@ The site will display posts and replies in order of date submitted and will uses
 
 - __Navigation Bar__
 
-    - The site will contain x pages and users will be able to navigate through them at the top of the page.
+    - The site will contain a few pages and users will be able to navigate through them at the top of the page.
     - Some navigation links will only be available to registered users.
+    - Registered users can navigate to the profile page which has all their posts displayed.
+    - Registered users also have the option to sign out.
+    - Users that are not logged in will have the option to register or sign in if already registered.
+
+- __New Post Button__
+
+    - Registered users are free to make new posts from the homepage.
+
+- __View Replies Button__
+
+    - Both registered and non-registered users are free to view replies to a certain post.
+    - Clicking this button will go to a page with the post in question and all replies to said post below.
+
+- __Reply Button__
+
+    - Only registered users are allowed to make replies, which are then displayed.
 
 ### Features Left to Implement
 
+- Like system
+
+    - A system where registered users can 'like' a post or a reply, wont change how much the post or reply is seen as that is dictated by submission date/time.
+
 ## Technologies Used
+
+- [HTML5]()
+
+- [CSS]()
+
+- [Python]()
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
     - Micro web framework written in Python to build application
@@ -41,8 +66,6 @@ The site will display posts and replies in order of date submitted and will uses
 ### Unfixed Bugs
 
 - On submit new post form the label text of 'title' doesn't go up as it should and blocks the title as it is written.
-
-- When subbmitting post the description sometimes displays as none.
 
 ## Deployment
 

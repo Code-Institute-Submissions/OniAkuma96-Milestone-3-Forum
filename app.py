@@ -123,12 +123,28 @@ def logout():
 @app.route("/view_replies/<post_id>")
 def view_replies(post_id):
     post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
-    return render_template("view_replies.html", post=post)
+    replies = mongo.db.replies.find({"reply_to": post_id})
+    return render_template("view_replies.html", post=post, replies=replies)
 
 
-@app.route("/reply/<post_id>")
+@app.route("/reply/<post_id>", methods=["GET", "POST"])
 def reply(post_id):
     post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+    replies = mongo.db.replies.find({"reply_to": post_id})
+    if request.method == "POST":
+        date_time = datetime.datetime.now()
+        reply = {
+            "reply_to": post_id,
+            "reply_description": request.form.get("reply_description"),
+            "created_by": session["user"],
+            "creation_date": date_time.strftime("%x"),
+            "creation_time": date_time.strftime("%X")
+        }
+        mongo.db.replies.insert_one(reply)
+        flash("Reply Successful")
+        return redirect(url_for(
+            "view_replies", post_id=post_id, replies=replies))
+
     return render_template("reply.html", post=post)
 
 

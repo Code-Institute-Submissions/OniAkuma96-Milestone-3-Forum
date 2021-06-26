@@ -1,24 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="page-header teal-text text-darken-2 center-align">View Replies</h3>
+    <h3 class="page-header teal-text text-darken-2 center-align">View Replies</h3>
 
-<div class="row">
-    <div class="col s12">
-        <div class="card teal darken-2">
-            <div class="card-content white-text">
-                <span class="card-title">{{ post.post_title }}</span>
-                <p>{{ post.post_description }}</p>
-            </div>
-            <div class="card-action">
-                <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on
-                    {{ post.creation_date }}</p>
-                {% if session.user %}
-                    <a href="{{ url_for('reply', post_id=post._id) }}">Reply</a>
-                {% endif %}
+    <!-- main post -->
+    <div class="row">
+        <div class="col s12">
+            <div class="card teal darken-2 white-text">
+                <div class="card-content">
+                    <span class="card-title">{{ post.post_title }}</span>
+                    <p>{{ post.post_description }}</p>
+                </div>
+                <div class="card-action">
+                    <p class="">Posted by: {{ post.created_by }} at {{ post.creation_time }} on
+                        {{ post.creation_date }}</p>
+                    {% if session.user %}
+                        <a href="{{ url_for('reply', post_id=post._id) }}">Reply</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    {% for reply in replies %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card teal darken-2 white-text">
+                    <div class="card-content">
+                        <p>{{ reply.reply_description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}
