@@ -40,6 +40,10 @@ The site will display posts and replies in order of date submitted and will uses
 
 ### Unfixed Bugs
 
+- On submit new post form the label text of 'title' doesn't go up as it should and blocks the title as it is written.
+
+- When subbmitting post the description sometimes displays as none.
+
 ## Deployment
 
 - I deployed my app to Heroku after getting Flask running by doing the following:

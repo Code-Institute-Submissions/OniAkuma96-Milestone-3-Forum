@@ -100,8 +100,13 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    # get all forum posts made by user
+    users_posts = mongo.db.forum_posts.find(
+        {"created_by": username}
+    )
+
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, users_posts=users_posts)
 
     return redirect(url_for("login"))
 
