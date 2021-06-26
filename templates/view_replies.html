@@ -29,6 +29,9 @@
                     <div class="card-content">
                         <p>{{ reply.reply_description }}</p>
                     </div>
+                    <div class="card-action">
+                        <p>Posted by: {{ reply.created_by }} at {{ reply.creation_time }} on {{ reply.creation_date }}</p>
+                    </div>
                 </div>
             </div>
         </div>

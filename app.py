@@ -87,6 +87,7 @@ def new_post():
             "creation_date": date_time.strftime("%x"),
             "creation_time": date_time.strftime("%X")
         }
+        # inserts post into db
         mongo.db.forum_posts.insert_one(post)
         flash("Post Successful")
         return redirect(url_for("homepage"))
@@ -122,15 +123,23 @@ def logout():
 
 @app.route("/view_replies/<post_id>")
 def view_replies(post_id):
+    # gets the post using the id
     post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+
+    # finds all replies to the post with matching id
     replies = mongo.db.replies.find({"reply_to": post_id})
+
     return render_template("view_replies.html", post=post, replies=replies)
 
 
 @app.route("/reply/<post_id>", methods=["GET", "POST"])
 def reply(post_id):
+    # gets the post using the id
     post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+
+    # finds all replies to the post with matching id
     replies = mongo.db.replies.find({"reply_to": post_id})
+
     if request.method == "POST":
         date_time = datetime.datetime.now()
         reply = {
@@ -140,6 +149,7 @@ def reply(post_id):
             "creation_date": date_time.strftime("%x"),
             "creation_time": date_time.strftime("%X")
         }
+        # inserts reply into db
         mongo.db.replies.insert_one(reply)
         flash("Reply Successful")
         return redirect(url_for(
