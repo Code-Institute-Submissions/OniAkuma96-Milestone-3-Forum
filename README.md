@@ -1,9 +1,9 @@
 # R3view
 
-R3view is a forum for discussion on anything, the emphasis is on free discussion by its users.
-Here registered users are free to make posts, view, and reply to posts, and reply to replies within posts.
-Posts will have a title and body and replies will just have a body. Ideally I would like to include the ability to post images too.
-This site is for registered users who want free and open discussion and also for non-registered users who wish to read the posts.
+R3view is a forum for discussion on anything, the emphasis is on free discussion by its users. Here registered users are free to make posts and reply to posts. 
+Posts will have a title and body and replies will just have a body. Ideally I would like to include the ability to post images too. 
+Posts will also have some additional info such as who made the post, at what time, and on what day. Posts and replies are displayed newest first.
+This site is for registered users who want free and open discussion by making posts and replying to other posts and also for non-registered users who wish to read the posts.
 
 ## Features
 
@@ -64,8 +64,6 @@ This site is for registered users who want free and open discussion and also for
 ### Validator Testing
 
 ### Unfixed Bugs
-
-- On submit new post form the label text of 'title' doesn't go up as it should and blocks the title as it is written.
 
 ## Deployment
 

@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/homepage")
 def homepage():
     # get all forum posts newest first
-    posts = mongo.db.forum_posts.find().sort('creation_date', -1)
+    posts = mongo.db.forum_posts.find().sort('sort_date', -1)
     return render_template("homepage.html", posts=posts)
 
 
@@ -85,7 +85,8 @@ def new_post():
             "post_description": request.form.get("post_description"),
             "created_by": session["user"],
             "creation_date": date_time.strftime("%x"),
-            "creation_time": date_time.strftime("%X")
+            "creation_time": date_time.strftime("%X"),
+            "sort_date": date_time.strftime("%c")
         }
         # inserts post into db
         mongo.db.forum_posts.insert_one(post)
@@ -104,7 +105,7 @@ def profile(username):
     # get all forum posts made by user
     users_posts = mongo.db.forum_posts.find(
         {"created_by": username}
-    ).sort('creation_date', -1)
+    ).sort('sort_date', -1)
 
     if session["user"]:
         return render_template(
@@ -147,7 +148,8 @@ def reply(post_id):
             "reply_description": request.form.get("reply_description"),
             "created_by": session["user"],
             "creation_date": date_time.strftime("%x"),
-            "creation_time": date_time.strftime("%X")
+            "creation_time": date_time.strftime("%X"),
+            "sort_date": date_time.strftime("%c")
         }
         # inserts reply into db
         mongo.db.replies.insert_one(reply)
