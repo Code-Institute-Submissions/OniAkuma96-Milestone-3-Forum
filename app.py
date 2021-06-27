@@ -21,8 +21,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/homepage")
 def homepage():
-    # get all forum posts
-    posts = mongo.db.forum_posts.find()
+    # get all forum posts newest first
+    posts = mongo.db.forum_posts.find().sort('creation_date', -1)
     return render_template("homepage.html", posts=posts)
 
 
@@ -104,7 +104,7 @@ def profile(username):
     # get all forum posts made by user
     users_posts = mongo.db.forum_posts.find(
         {"created_by": username}
-    )
+    ).sort('creation_date', -1)
 
     if session["user"]:
         return render_template(
@@ -156,6 +156,14 @@ def reply(post_id):
             "view_replies", post_id=post_id, replies=replies))
 
     return render_template("reply.html", post=post)
+
+
+@app.route("/delete_post/<post_id>")
+def delete_post(post_id):
+    # removes post with matching id from db
+    mongo.db.forum_posts.remove({"_id": ObjectId(post_id)})
+    flash("Post Deleted")
+    return redirect(url_for("homepage"))
 
 
 if __name__ == "__main__":
