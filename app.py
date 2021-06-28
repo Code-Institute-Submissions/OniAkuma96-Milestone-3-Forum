@@ -168,6 +168,14 @@ def delete_post(post_id):
     return redirect(url_for("homepage"))
 
 
+@app.route("/delete_reply/<reply_id>")
+def delete_reply(reply_id):
+    # 
+    mongo.db.replies.remove({"_id": ObjectId(reply_id)})
+    flash("Reply Deleted")
+    return redirect(url_for("homepage"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

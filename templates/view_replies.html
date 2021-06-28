@@ -31,6 +31,9 @@
                     </div>
                     <div class="card-action">
                         <p>Posted by: {{ reply.created_by }} at {{ reply.creation_time }} on {{ reply.creation_date }}</p>
+                        {% if reply.created_by == session.user %}
+                            <a href="{{ url_for('delete_reply', reply_id=reply._id) }}">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
