@@ -30,6 +30,14 @@ This site is for registered users who want free and open discussion by making po
 
     - Only registered users are allowed to make replies, which are then displayed.
 
+- __Delete Post__
+
+    - Users can delete posts they have made from the profile page.
+
+- __Delete Reply__
+
+    - Users can delete a reply they have made to a post from view replies page.
+
 ### Features Left to Implement
 
 - Like system
@@ -38,11 +46,11 @@ This site is for registered users who want free and open discussion by making po
 
 ## Technologies Used
 
-- [HTML5]()
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
-- [CSS]()
+- [CSS](https://en.wikipedia.org/wiki/CSS)
 
-- [Python]()
+- [Python](https://www.python.org/doc/)
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
     - Micro web framework written in Python to build application
@@ -50,14 +58,15 @@ This site is for registered users who want free and open discussion by making po
 - [Heroku](https://dashboard.heroku.com/login)
     - For deployment of Python application
 
-- [MongoDB]()
+- [MongoDB](https://www.mongodb.com/)
     - As a database for storing infomation
 
-- [jQuery]()
+- [jQuery](https://jquery.com/)
 
-- [Materialize]()
+- [Materialize](https://materializecss.com/)
 
-- [Font Awsome]()
+- [Font Awsome](https://fontawesome.com/)
+    - For icons
 
 ## Testing
 

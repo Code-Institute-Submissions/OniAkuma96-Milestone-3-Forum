@@ -170,7 +170,7 @@ def delete_post(post_id):
 
 @app.route("/delete_reply/<reply_id>")
 def delete_reply(reply_id):
-    # 
+    # removes reply with matching id
     mongo.db.replies.remove({"_id": ObjectId(reply_id)})
     flash("Reply Deleted")
     return redirect(url_for("homepage"))
