@@ -17,13 +17,14 @@
                 <div class="card teal darken-2">
                     <div class="card-content white-text">
                         <span class="card-title">{{ post.post_title }}</span>
+                        <img src="{{ post.post_image }}" height="200">
                         <p>{{ post.post_description }}</p>
                     </div>
                     <div class="card-action">
                         <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }}</p>
-                        <a href="{{ url_for('view_replies', post_id=post._id) }}">View Replies</a>
+                        <a href="{{ url_for('post_details', post_id=post._id) }}">View Replies</a>
                         {% if session.user %}
-                            <a href="{{ url_for('reply', post_id=post._id) }}">Reply</a>
+                            <a href="{{ url_for('post_reply', post_id=post._id) }}">Reply</a>
                         {% endif %}
                     </div>
                 </div>

@@ -4,7 +4,7 @@
     <h3 class="center-align teal-text text-darken-2 page-header">Reply</h3>
 
     <div class="row card-panel grey lighten-3">
-        <form method="POST" action="{{ url_for('reply', post_id=post._id) }}" class="col s12">
+        <form method="POST" action="{{ url_for('post_reply', post_id=post._id) }}" class="col s12">
             <!-- reply body -->
             <div class="row">
                 <div class="col s12">
@@ -12,6 +12,17 @@
                         <div class="input-field col s12">
                             <textarea name="reply_description" id="reply_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
                             <label for="reply_description">Write Reply Here</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="url" id="reply_image" name="reply_image">
+                            <label for="reply_image">Image</label>
                         </div>
                     </div>
                 </div>
