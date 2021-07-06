@@ -99,20 +99,25 @@ def new_post():
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    # grabs username of current session
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    try:
+        # grabs username of current session
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
 
-    # get all forum posts made by user
-    users_posts = mongo.db.forum_posts.find(
-        {"created_by": username}
-    ).sort('sort_date', -1)
+        # get all forum posts made by user
+        users_posts = mongo.db.forum_posts.find(
+            {"created_by": username}
+        ).sort('sort_date', -1)
 
-    if session["user"]:
-        return render_template(
-            "profile.html", username=username, users_posts=users_posts)
+        if session["user"]:
+            return render_template(
+                "profile.html", username=username, users_posts=users_posts)
 
-    return redirect(url_for("login"))
+        return redirect(url_for("login"))
+
+    except KeyError:
+        flash("Not logged in")
+        return redirect(url_for("homepage"))
 
 
 @app.route("/logout")
