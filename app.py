@@ -162,7 +162,7 @@ def post_reply(post_id):
         mongo.db.replies.insert_one(reply)
         flash("Reply Successful")
         return redirect(url_for(
-            "view_replies", post_id=post_id, replies=replies))
+            "post_details", post_id=post_id, replies=replies))
 
     return render_template("reply.html", post=post)
 

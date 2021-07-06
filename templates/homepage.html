@@ -17,8 +17,8 @@
                 <div class="card teal darken-2">
                     <div class="card-content white-text">
                         <span class="card-title">{{ post.post_title }}</span>
-                        <img src="{{ post.post_image }}" height="200">
                         <p>{{ post.post_description }}</p>
+                        <img src="{{ post.post_image }}" alt="user posted image" height="200">
                     </div>
                     <div class="card-action">
                         <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }}</p>
@@ -26,11 +26,13 @@
                         {% if session.user %}
                             <a href="{{ url_for('post_reply', post_id=post._id) }}">Reply</a>
                         {% endif %}
+                        {% if post.created_by == session.user %}
+                            <a href="{{ url_for('delete_post', post_id=post._id) }}">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-
     {% endfor %}
 
 {% endblock %}

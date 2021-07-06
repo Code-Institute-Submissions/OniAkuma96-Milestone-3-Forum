@@ -8,10 +8,13 @@
 }
 
 .container {
-    width: 90%;
-    max-width: 1400px;
+    
 }
 
 nav .brand-logo {
     left: 5px;
+}
+
+.card-content img {
+    margin-top: 2vh;
 }
