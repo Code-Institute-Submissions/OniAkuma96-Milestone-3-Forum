@@ -18,6 +18,10 @@
                     {% if session.user %}
                         <a href="{{ url_for('post_reply', post_id=post._id) }}">Reply</a>
                     {% endif %}
+                    {% if post.created_by == session.user %}
+                        <a href="{{ url_for('delete_post', post_id=post._id) }}">Delete</a>
+                        <a href="{{ url_for('edit_post', post_id=post._id) }}">Edit</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -36,6 +40,7 @@
                         <p>Posted by: {{ reply.created_by }} at {{ reply.creation_time }} on {{ reply.creation_date }}</p>
                         {% if reply.created_by == session.user %}
                             <a href="{{ url_for('delete_reply', reply_id=reply._id) }}">Delete</a>
+                            <a href="{{ url_for('edit_reply', reply_id=reply._id) }}">Edit</a>
                         {% endif %}
                     </div>
                 </div>

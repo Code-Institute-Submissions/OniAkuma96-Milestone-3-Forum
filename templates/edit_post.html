@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align teal-text text-darken-2 page-header">Edit Post</h3>
+
+    <div class="row card-panel grey lighten-3">
+        <form method="POST" action="{{ url_for('edit_post', post_id=post._id) }}" class="col s12">
+            <!-- post title -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="post_title" name="post_title" type="text" class="validate" minlength="1" maxlength="100" required>
+                    <label for="post_title">Title</label>
+                </div>
+            </div>
+            <!-- post body -->
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea name="post_description" id="post_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
+                            <label for="post_description">Write Post Here</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="url" id="post_image" name="post_image" class="validate" required>
+                    <label for="post_image">Image</label>
+                </div>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large teal darken-2 waves-effect waves-light">Submit Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

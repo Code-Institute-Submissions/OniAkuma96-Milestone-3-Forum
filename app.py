@@ -183,7 +183,41 @@ def delete_reply(reply_id):
     return redirect(url_for("homepage"))
 
 
-# edit post/edit reply
+# edit post
+@app.route("/post/<post_id>/edit", methods=["GET", "POST"])
+def edit_post(post_id):
+    post = mongo.db.forum_posts.find_one(ObjectId(post_id))
+
+    if request.method == "POST":
+        edit = {
+            "post_title": request.form.get("post_title"),
+            "post_description": request.form.get("post_description"),
+            "post_image": request.form.get("post_image")
+        }
+
+        mongo.db.forum_posts.update({"_id": ObjectId(post_id)}, edit)
+        flash("Edit Successful")
+        return redirect(url_for("home"))
+
+    return render_template("edit_post.html", post=post)
+
+
+# edit reply
+@app.route("/reply/<reply_id>/edit", methods=["GET", "POST"])
+def edit_reply(reply_id):
+    reply = mongo.db.replies.find_one(reply_id)
+
+    if request.method == "POST":
+        edit = {
+            "reply_description": request.form.get("reply_description"),
+            "reply_image": request.form.get("reply_image")
+        }
+
+        mongo.db.replies.update({"_id": ObjectId(reply_id)}, edit)
+        flash("Edit Successful")
+        return redirect(url_for("homepage"))
+
+    return render_template("edit_reply.html", reply=reply)
 
 
 # post/post_id/like
