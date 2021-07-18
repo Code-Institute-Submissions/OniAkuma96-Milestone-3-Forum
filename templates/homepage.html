@@ -21,7 +21,13 @@
                         <img src="{{ post.post_image }}" alt="user posted image" height="200">
                     </div>
                     <div class="card-action">
-                        <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }}</p>
+                        {% if post.post_edited == "y" %}
+                            <p class="white-text">
+                                Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }} Edited at {{ post.edit_time }} on {{ post.edit_date }}
+                            </p>
+                        {% else %}
+                            <p class="white-text">Posted by: {{ post.created_by }} at {{ post.creation_time }} on {{ post.creation_date }}</p>
+                        {% endif %}
                         <a href="{{ url_for('post_details', post_id=post._id) }}">View Replies</a>
                         {% if session.user %}
                             <a href="{{ url_for('post_reply', post_id=post._id) }}">Reply</a>

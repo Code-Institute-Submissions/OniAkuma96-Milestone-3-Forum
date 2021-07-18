@@ -87,7 +87,8 @@ def new_post():
             "created_by": session["user"],
             "creation_date": date_time.strftime("%x"),
             "creation_time": date_time.strftime("%X"),
-            "sort_date": date_time.strftime("%c")
+            "sort_date": date_time.strftime("%c"),
+            "post_edited": "n"
         }
         # inserts post into db
         mongo.db.forum_posts.insert_one(post)
@@ -156,7 +157,8 @@ def post_reply(post_id):
             "created_by": session["user"],
             "creation_date": date_time.strftime("%x"),
             "creation_time": date_time.strftime("%X"),
-            "sort_date": date_time.strftime("%c")
+            "sort_date": date_time.strftime("%c"),
+            "reply_edited": "n"
         }
         # inserts reply into db
         mongo.db.replies.insert_one(reply)
@@ -189,15 +191,23 @@ def edit_post(post_id):
     post = mongo.db.forum_posts.find_one(ObjectId(post_id))
 
     if request.method == "POST":
+        # gets the date and time of post
+        edit_date_time = datetime.datetime.now()
+
         edit = {
-            "post_title": request.form.get("post_title"),
-            "post_description": request.form.get("post_description"),
-            "post_image": request.form.get("post_image")
+            "$set": {
+                "post_title": request.form.get("post_title"),
+                "post_description": request.form.get("post_description"),
+                "post_image": request.form.get("post_image"),
+                "post_edited": "y",
+                "edit_date": edit_date_time.strftime("%x"),
+                "edit_time": edit_date_time.strftime("%X")
+            }
         }
 
-        mongo.db.forum_posts.update({"_id": ObjectId(post_id)}, edit)
+        mongo.db.forum_posts.update_one({"_id": ObjectId(post_id)}, edit)
         flash("Edit Successful")
-        return redirect(url_for("home"))
+        return redirect(url_for("homepage"))
 
     return render_template("edit_post.html", post=post)
 
@@ -208,12 +218,20 @@ def edit_reply(reply_id):
     reply = mongo.db.replies.find_one(reply_id)
 
     if request.method == "POST":
+        # gets the date and time of post
+        edit_date_time = datetime.datetime.now()
+
         edit = {
-            "reply_description": request.form.get("reply_description"),
-            "reply_image": request.form.get("reply_image")
+            "$set": {
+                "reply_description": request.form.get("reply_description"),
+                "reply_image": request.form.get("reply_image"),
+                "reply_edited": "y",
+                "edit_date": edit_date_time.strftime("%x"),
+                "edit_time": edit_date_time.strftime("%X")
+            }
         }
 
-        mongo.db.replies.update({"_id": ObjectId(reply_id)}, edit)
+        mongo.db.replies.update_one({"_id": ObjectId(reply_id)}, edit)
         flash("Edit Successful")
         return redirect(url_for("homepage"))
 
