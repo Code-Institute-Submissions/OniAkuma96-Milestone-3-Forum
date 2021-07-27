@@ -8,7 +8,7 @@
             <!-- post title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="post_title" name="post_title" type="text" class="validate" minlength="1" maxlength="100" required>
+                    <input value="{{ post.post_title }}" id="post_title" name="post_title" type="text" class="validate" minlength="1" maxlength="100" required>
                     <label for="post_title">Title</label>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea name="post_description" id="post_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
+                            <textarea value="{{ post.post_description }}" name="post_description" id="post_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
                             <label for="post_description">Write Post Here</label>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
             <!-- image -->
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="url" id="post_image" name="post_image" class="validate" required>
+                    <input value="{{ post.post_image }}" type="url" id="post_image" name="post_image" class="validate" required>
                     <label for="post_image">Image</label>
                 </div>
             </div>

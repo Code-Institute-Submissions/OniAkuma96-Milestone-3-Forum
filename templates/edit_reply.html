@@ -10,7 +10,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea name="reply_description" id="reply_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
+                            <textarea value="{{ reply.reply_description }}" name="reply_description" id="reply_description" cols="30" rows="10" class="materialize-textarea" minlength="1" maxlength="2000" required></textarea>
                             <label for="reply_description">Write Reply Here</label>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="url" id="reply_image" name="reply_image">
+                            <input value="reply.reply_image" type="url" id="reply_image" name="reply_image">
                             <label for="reply_image">Image</label>
                         </div>
                     </div>

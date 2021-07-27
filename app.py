@@ -1,5 +1,6 @@
 import os
-import datetime
+# import datetime
+from datetime import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -22,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/home")
 def homepage():
     # get all forum posts newest first
-    posts = mongo.db.forum_posts.find().sort('sort_date', -1)
+    posts = mongo.db.forum_posts.find().sort('created_at', -1)
     return render_template("homepage.html", posts=posts)
 
 
@@ -78,17 +79,12 @@ def login():
 @app.route("/post/new", methods=["GET", "POST"])
 def new_post():
     if request.method == "POST":
-        # grabs the date and time of submission for display
-        date_time = datetime.datetime.now()
         post = {
             "post_title": request.form.get("post_title"),
             "post_description": request.form.get("post_description"),
             "post_image": request.form.get("post_image"),
             "created_by": session["user"],
-            "creation_date": date_time.strftime("%x"),
-            "creation_time": date_time.strftime("%X"),
-            "sort_date": date_time.strftime("%c"),
-            "post_edited": "n"
+            "created_at": datetime.now()
         }
         # inserts post into db
         mongo.db.forum_posts.insert_one(post)
@@ -131,13 +127,16 @@ def logout():
 
 @app.route("/post/<post_id>/view")
 def post_details(post_id):
-    # gets the post using the id
-    post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+    try:
+        # gets the post using the id
+        post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
 
-    # finds all replies to the post with matching id
-    replies = mongo.db.replies.find({"reply_to": post_id})
+        # finds all replies to the post with matching id
+        replies = mongo.db.replies.find({"reply_to": post_id})
 
-    return render_template("view_replies.html", post=post, replies=replies)
+        return render_template("view_replies.html", post=post, replies=replies)
+    except:
+        return redirect(url_for("homepage"))
 
 
 @app.route("/post/<post_id>/reply", methods=["GET", "POST"])
@@ -149,16 +148,12 @@ def post_reply(post_id):
     replies = mongo.db.replies.find({"reply_to": post_id})
 
     if request.method == "POST":
-        date_time = datetime.datetime.now()
         reply = {
             "reply_to": post_id,
             "reply_description": request.form.get("reply_description"),
             "reply_image": request.form.get("reply_image"),
             "created_by": session["user"],
-            "creation_date": date_time.strftime("%x"),
-            "creation_time": date_time.strftime("%X"),
-            "sort_date": date_time.strftime("%c"),
-            "reply_edited": "n"
+            "created_at": datetime.now()
         }
         # inserts reply into db
         mongo.db.replies.insert_one(reply)
@@ -171,19 +166,24 @@ def post_reply(post_id):
 
 @app.route("/post/<post_id>/delete")
 def delete_post(post_id):
-    # removes post with matching id from db
-    mongo.db.forum_posts.remove({"_id": ObjectId(post_id)})
-    flash("Post Deleted")
-    return redirect(url_for("homepage"))
+    try:
+        # removes post with matching id from db
+        mongo.db.forum_posts.remove({"_id": ObjectId(post_id)})
+        flash("Post Deleted")
+        return redirect(url_for("homepage"))
+    except:
+        return redirect(url_for("homepage"))
 
 
 @app.route("/reply/<reply_id>/delete")
 def delete_reply(reply_id):
-    # removes reply with matching id
-    mongo.db.replies.remove({"_id": ObjectId(reply_id)})
-    flash("Reply Deleted")
-    return redirect(url_for("homepage"))
-
+    try:
+        # removes reply with matching id
+        mongo.db.replies.remove({"_id": ObjectId(reply_id)})
+        flash("Reply Deleted")
+        return redirect(url_for("homepage"))
+    except:
+        return redirect(url_for("homepage"))
 
 # edit post
 @app.route("/post/<post_id>/edit", methods=["GET", "POST"])
@@ -191,17 +191,12 @@ def edit_post(post_id):
     post = mongo.db.forum_posts.find_one(ObjectId(post_id))
 
     if request.method == "POST":
-        # gets the date and time of post
-        edit_date_time = datetime.datetime.now()
-
         edit = {
             "$set": {
                 "post_title": request.form.get("post_title"),
                 "post_description": request.form.get("post_description"),
                 "post_image": request.form.get("post_image"),
-                "post_edited": "y",
-                "edit_date": edit_date_time.strftime("%x"),
-                "edit_time": edit_date_time.strftime("%X")
+                "edited_at": datetime.now()
             }
         }
 
@@ -215,19 +210,14 @@ def edit_post(post_id):
 # edit reply
 @app.route("/reply/<reply_id>/edit", methods=["GET", "POST"])
 def edit_reply(reply_id):
-    reply = mongo.db.replies.find_one(reply_id)
+    reply = mongo.db.replies.find_one(ObjectId(reply_id))
 
     if request.method == "POST":
-        # gets the date and time of post
-        edit_date_time = datetime.datetime.now()
-
         edit = {
             "$set": {
                 "reply_description": request.form.get("reply_description"),
                 "reply_image": request.form.get("reply_image"),
-                "reply_edited": "y",
-                "edit_date": edit_date_time.strftime("%x"),
-                "edit_time": edit_date_time.strftime("%X")
+                "edited_at": datetime.now()
             }
         }
 
@@ -236,9 +226,6 @@ def edit_reply(reply_id):
         return redirect(url_for("homepage"))
 
     return render_template("edit_reply.html", reply=reply)
-
-
-# post/post_id/like
 
 
 if __name__ == "__main__":
