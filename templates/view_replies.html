@@ -13,10 +13,10 @@
                     <img src="{{ post.post_image }}" height="200">
                 </div>
                 <div class="card-action">
-                    {% if not post.edited_at %}
-                        <p class="">Posted by: {{ post.created_by }} at {{ post.created_at }}</p>
+                    {% if post.edited_at == "n" %}
+                        <p class="white-text">Posted by: {{ post.created_by }} at {{ post.created_at.strftime("%c") }}</p>
                     {% else %}
-                        <p class="white-text">Posted by: {{ post.created_by }} at {{ post.created_at }} edited at {{ post.edited_at }}</p>
+                        <p class="white-text">Posted by: {{ post.created_by }} at {{ post.created_at.strftime("%c") }} edited at {{ post.edited_at.strftime("%c") }}</p>
                     {% endif %}
                     {% if session.user %}
                         <a href="{{ url_for('post_reply', post_id=post._id) }}">Reply</a>
@@ -40,10 +40,10 @@
                         <img src="{{ reply.reply_image }}" height="200">
                     </div>
                     <div class="card-action">
-                        {% if not reply.edited_at %}
-                            <p>Posted by: {{ reply.created_by }} at {{ reply.created_at }}</p>
+                        {% if reply.reply_edited == "n" %}
+                            <p class="white-text">Posted by {{ reply.created_by }} at {{ reply.created_at.strftime("%c") }}</p>
                         {% else %}
-                            <p class="white-text">Posted by: {{ reply.created_by }} at {{ reply.created_at }} edited at {{ reply.edited_at }}</p>
+                            <p class="white-text">Posted by {{ reply.created_by }} at {{ reply.created_at.strftime("%c") }} edited at {{ reply.edited_at.strftime("%c") }}</p>
                         {% endif %}
                         {% if reply.created_by == session.user %}
                             <a href="{{ url_for('delete_reply', reply_id=reply._id) }}">Delete</a>

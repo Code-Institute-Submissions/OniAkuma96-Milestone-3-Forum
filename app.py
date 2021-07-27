@@ -84,7 +84,8 @@ def new_post():
             "post_description": request.form.get("post_description"),
             "post_image": request.form.get("post_image"),
             "created_by": session["user"],
-            "created_at": datetime.now()
+            "created_at": datetime.now(),
+            "edited_at": "n"
         }
         # inserts post into db
         mongo.db.forum_posts.insert_one(post)
@@ -153,7 +154,8 @@ def post_reply(post_id):
             "reply_description": request.form.get("reply_description"),
             "reply_image": request.form.get("reply_image"),
             "created_by": session["user"],
-            "created_at": datetime.now()
+            "created_at": datetime.now(),
+            "edited_at": "n"
         }
         # inserts reply into db
         mongo.db.replies.insert_one(reply)
