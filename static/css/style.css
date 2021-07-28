@@ -18,3 +18,8 @@ nav .brand-logo {
 .card-content img {
     margin-top: 2vh;
 }
+
+.reply-indent{
+    width: 90%;
+    float: right;
+}

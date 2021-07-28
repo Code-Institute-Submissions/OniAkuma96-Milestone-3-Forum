@@ -20,7 +20,7 @@
                         <img src="{{ post.post_image }}" alt="user posted image" height="200">
                     </div>
                     <div class="card-action">
-                        {% if post.edited_at == n %}
+                        {% if post.edited_at == "n" %}
                             <p class="white-text">Posted by: {{ post.created_by }} at {{ post.created_at.strftime("%c") }}</p>
                         {% else %}
                             <p class="white-text">Posted by: {{ post.created_by }} at {{ post.created_at.strftime("%c") }} edited at {{ post.edited_at.strftime("%c") }}</p>
