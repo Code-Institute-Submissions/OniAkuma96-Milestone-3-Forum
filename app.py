@@ -128,16 +128,13 @@ def logout():
 
 @app.route("/post/<post_id>/view")
 def post_details(post_id):
-    try:
-        # gets the post using the id
-        post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
+    # gets the post using the id
+    post = mongo.db.forum_posts.find_one({"_id": ObjectId(post_id)})
 
-        # finds all replies to the post with matching id
-        replies = mongo.db.replies.find({"reply_to": post_id})
+    # finds all replies to the post with matching id
+    replies = mongo.db.replies.find({"reply_to": post_id})
 
-        return render_template("view_replies.html", post=post, replies=replies)
-    except:
-        return redirect(url_for("homepage"))
+    return render_template("view_replies.html", post=post, replies=replies)
 
 
 @app.route("/post/<post_id>/reply", methods=["GET", "POST"])
