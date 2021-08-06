@@ -1,8 +1,9 @@
 # R3view
 
 R3view is a forum for discussion on anything, the emphasis is on free discussion by its users. Here registered users are free to make posts and reply to posts. 
-Posts will have a title and body and replies will just have a body. Ideally I would like to include the ability to post images too. 
+Posts will have a title, body, and linked image while replies will just have a body and image (optional). 
 Posts will also have some additional info such as who made the post, at what time, and on what day. Posts and replies are displayed newest first.
+Registered users will be able to navigate to their profile page to see all the posts they have made.
 This site is for registered users who want free and open discussion by making posts and replying to other posts and also for non-registered users who wish to read the posts.
 
 ## Features
@@ -17,6 +18,14 @@ This site is for registered users who want free and open discussion by making po
     - Registered users also have the option to sign out.
     - Users that are not logged in will have the option to register or sign in if already registered.
 
+- __Register and Login__
+
+    - Users are free to register with a username and password. Registered users can login by providing their username and password.
+
+- __Profile Page__
+
+    - Registered users can navigate to the profile page to see all the posts they have made.
+
 - __New Post Button__
 
     - Registered users are free to make new posts from the homepage.
@@ -24,19 +33,19 @@ This site is for registered users who want free and open discussion by making po
 - __View Replies Button__
 
     - Both registered and non-registered users are free to view replies to a certain post.
-    - Clicking this button will go to a page with the post in question and all replies to said post below.
+    - Clicking this button will go to a page with the post in question and all replies to said post indented below.
 
 - __Reply Button__
 
     - Only registered users are allowed to make replies, which are then displayed.
 
-- __Delete Post__
+- __Delete Post/Reply__
 
-    - Users can delete posts they have made from the profile page.
+    - Users can delete posts/replies they have made.
 
-- __Delete Reply__
+- __Edit Post/Reply__
 
-    - Users can delete a reply they have made to a post from view replies page.
+    - Users can edit a post/reply they have made.
 
 ### Features Left to Implement
 
@@ -64,6 +73,7 @@ This site is for registered users who want free and open discussion by making po
 - [jQuery](https://jquery.com/)
 
 - [Materialize](https://materializecss.com/)
+    - For a webpage framework
 
 - [Font Awsome](https://fontawesome.com/)
     - For icons
