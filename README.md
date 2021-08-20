@@ -6,6 +6,50 @@ Posts will also have some additional info such as who made the post, at what tim
 Registered users will be able to navigate to their profile page to see all the posts they have made.
 This site is for registered users who want free and open discussion by making posts and replying to other posts and also for non-registered users who wish to read the posts.
 
+[Live link to finished site](https://r3view.herokuapp.com/)
+
+## User Stories
+
+- As a non-registered user I want to register. From the homepage I can click on rigister in the navbar and register once I provide a valid username and password.
+
+- As a registered user I want to make a post. I log in by clicking on log in in the navigation bar, then click on the new post button on the homepage.
+
+- As a registered user I want to edit a post I made. I navigate to the profile page in the navbar and find the post I would like to edit. I click the edit button and make the changes before submitting.
+
+- As a non-registered user I want to read replies to a post. I can click on the view replies button of the post I want to see.
+
+- As a registered user I want to log out. I can click on logout in the navbar.
+
+- As a registered user I want to delete a reply I made. I find the post in question and click on the view replies button, I find my reply and click delete.
+
+## Wireframes
+
+These are the wireframes that I made for this project. Can be found in /static/wireframes folder.
+
+![Homepage Web](/static/wireframes/homepage-web.png)
+
+![Profile Page Web](/static/wireframes/profile-web.png)
+
+![Register/Login Web](/static/wireframes/register-login-web.png)
+
+![View Post and Replies Web](/static/wireframes/view-post-replies-web.png)
+
+![Homepage Tablet](/static/wireframes/homepage-tablet.png)
+
+![Profile Page Tablet](/static/wireframes/profile-tablet.png)
+
+![Register/Login Tablet](/static/wireframes/register-login-tablet.png)
+
+![View Post and Replies Tablet](/static/wireframes/view-post-replies-tablet.png)
+
+![Homepage Mobile](/static/wireframes/homepage-phone.png)
+
+![Profile Page Mobile](/static/wireframes/profile-phone.png)
+
+![Register/Login Mobile](/static/wireframes/register-login-phone.png)
+
+![View Post and Replies Mobile](/static/wireframes/view-post-replies-phone.png)
+
 ## Features
 
 ### Existing Features
@@ -80,7 +124,30 @@ This site is for registered users who want free and open discussion by making po
 
 ## Testing
 
-### Validator Testing
+To validate my code I used [W3 HTML validator](https://validator.w3.org/), [Jigsaw validator](https://jigsaw.w3.org/css-validator/), and [Python syntax checker](https://extendsclass.com/python-tester.html)
+
+I used Google Chrome on my windows 10 PC throughout the process of making this site so I know everthing works well on that side of things. I can make, edit, view, and delete posts and replies and all the features work as intended. I have tested the game and all other features using the inspect feature offered by Chrome too to test different screen sizes. I have also tested my site with Edge and Firefox browsers to ensure everything works on them aswell.
+I have also tested on an iPad mini, a Macbook Air, a Samsung Galaxy J3. Here was my testing procedure for these devices.
+
+- Testing registration and login functionality
+    - From homepage navigate to register.
+    - Tried submitting form with invalid data, which does not work.
+    - Submitted form with valid data.
+    - Navigate to login and provide username and password recently created.
+    - Successful login redirects user to their profile, as intended.
+    - Click logout and successfully log out.
+
+- Testing CRUD
+    - Login if not already logged in.
+    - Navigate to homepage and click on new post button.
+    - Try submitting post with invalid data, which does not work.
+    - Submit post with valid data.
+    - Post is submitted and displayed on the homepage and user's profile.
+    - Click view replies and click reply button.
+    - Submit valid reply which is then displayed under the post, indented to differentiate between posts and replies.
+    - Click edit on the post and change the title and description before submitting, edit is successful and the timestamp on the post successfully shows it has been edited and the time it was edited at.
+    - Click edit reply on the reply I made just now. Change reply descriptiona and submit, everything works as intended.
+    - Click delete on reply then post, both are successfully deleted.
 
 ### Unfixed Bugs
 
