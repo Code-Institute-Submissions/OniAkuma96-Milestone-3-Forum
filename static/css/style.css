@@ -7,10 +7,6 @@
     font-size: 44px;
 }
 
-.container {
-    
-}
-
 nav .brand-logo {
     left: 5px;
 }
@@ -22,4 +18,10 @@ nav .brand-logo {
 .reply-indent{
     width: 90%;
     float: right;
+}
+
+@media (max-width: 992px) {
+    nav .brand-logo {
+        margin-left: 8vw;
+    }
 }
