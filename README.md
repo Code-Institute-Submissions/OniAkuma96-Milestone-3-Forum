@@ -155,17 +155,21 @@ I have also tested on an iPad mini, a Macbook Air, a Samsung Galaxy J3. Here was
 
 - I deployed my app to Heroku after getting Flask running by doing the following:
 
-1 Created requirements.txt file so Heroku knows what it needs to run app using pip3 freeze --local > requirements.txt command in terminal.
+1. Created requirements.txt file to let Heroku know which applications and dependencies are required to run my app. I did this using the command pip3 freeze --local > requirements.txt command in the GitPod CLI.
 
-2 Created Procfile needed for Heroku to run app using echo web: python app.py > Procfile command in terminal.
+2. Next we need a Procfile which is what Heroku looks for to know which file runs the app, and how to run it. To created this Procfile I used the command echo web: python app.py > Procfile in the GitPod CLI. Procfile has a capital 'P', and no file extension, this is important for the deployed app to run correctly.
 
-3 Logged in to Heroku and clicked on 'create new app', set app name to r3view, and region to Europe.
+3. Double check the requirements.txt file lists all dependencies that are needed for Flask. Also check Procfile as sometimes it adds a blank line at the bottom and sometimes this can cause problems when running the app on Heroku so delete that line and save the file.
 
-4 On deploy tab clicked on Connect to GitHub button to setup automatic deployment. Searched for repo name and clicked connect.
+4. Navigated to Heroku.com. Once logged in and on main dashboard click on the 'new' button in the top right then 'create a new app'. Heroku app name must be unique, use '-' instead of spaces, and be all lowercase letters. For my app name I chose 'r3view', which is the name of my site. Next select the region closest to your location, I chose Europe, then click on 'create app'.
 
-5 Navigate to settings tab and reveal Config Vars and added keys and values.
+5. Once the app is created navigate to the 'Deploy' tab of the app settings. To connect the app click on the Connect to GitHub button on the 'Deploy' tab. This is the first step to setting up automatic deployment from our GitHub repository. Make sure correct profile is displayed on the 'Connect to GitHub' tab and enter your repository name. My repository was named 'Milestone-3-Forum', so I typed that into the search bar and clicked search. Once it finds your repo, click the 'Connect' button which will appear after your repo has been found.
 
-6 Back in GitPod pushed requirements.txt and Procfile, enabled automatic deployment on Heroku, and clicked deploy branch. Heroku confirmed app was successfully deployed.
+6. Next before we click to enable automatic deployment we still have to add some Config Variables which Heroku will need to run our app. As our environment variables are within a hidden env.py file we need to enter these environment variables manually for Heroku so it can access them. In our Heroku app's settings tab navigate to the 'Settings' tab at the far right. Next we can scroll down and click on 'Reveal Config Vars' button to reveal all the Configuration Variables that our Heroku app currently has access to. First add the 'IP' key with a value of '0.0.0.0', then the 'PORT' variable with a value of '5000'. Next I will add the 'SECRET_KEY' variable which I got from my env.py file. Lastly I added the keys for 'MONGO_DBNAME', which is the name of the database which in my case is 'forum_manager', and the last Config Var is the 'MONGO_URI' key with its respective value.
+
+7. After setting all required Configuration Variables navigate back to the 'Deploy' tab in the Heroku app's settings. We are almost ready to connect our app with our repo but first we need to push our two new files to the repository. Back within the GitHub terminal run the command 'git status' to confirm the Procfile and requirements.txt need to be pushed to GitHub. First add requirements.txt with the command 'git add requirements.txt, next run the command git commit -m "added requirements.txt" to commit this file. Next do the same with the Procfile add it with git add Procfile, and then commit it with git commit -m "added Procfile". Then you can run git push to send these files to GitHub.
+
+8. Now we can safely enable automatic deployment by navigating to the 'Deploy' tab in the Heroku app's settings and clicking on the button 'Enable Automatic Deployment'. Next click the 'Deploy Branch' button below the automatic deployment button to deploy the master branch of the project. Heroku will now receive the code from GitHub and start building th app using our required packages. That should take a minute to build and hopefully once it's done you'll also see 'Your app was successfully deployed'. Click 'view' to launch your new app and it should open. The deployed site is now available and should automatically update whenever we push changes to the GitHub repository.
 
 ## Credits
 
