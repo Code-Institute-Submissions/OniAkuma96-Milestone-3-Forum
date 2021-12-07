@@ -50,6 +50,12 @@ These are the wireframes that I made for this project. Can be found in /static/w
 
 ![View Post and Replies Mobile](/static/wireframes/view-post-replies-phone.png)
 
+### Data Schema
+
+- Here is the data schema I made for this project
+
+    ![MS3 Data Schema](/static/wireframes/ms3-database-schema.png)
+
 ## Features
 
 ### Existing Features
