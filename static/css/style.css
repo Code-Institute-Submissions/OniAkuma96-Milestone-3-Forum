@@ -30,6 +30,13 @@ nav .brand-logo {
     }
 }
 
+@media (max-width: 459px) {
+    .card-content img {
+        max-width: 70vw;
+        height: auto;
+    }
+}
+
 @media (max-width: 387px) {
     .responsive-text {
         font-size: 80%;
