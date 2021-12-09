@@ -1,5 +1,4 @@
 import os
-# import datetime
 from datetime import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
@@ -184,6 +183,7 @@ def delete_reply(reply_id):
     except:
         return redirect(url_for("homepage"))
 
+
 # edit post
 @app.route("/post/<post_id>/edit", methods=["GET", "POST"])
 def edit_post(post_id):
@@ -230,4 +230,4 @@ def edit_reply(reply_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
